@@ -7,1113 +7,736 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 20px;
             background-color: #ffffff;
             font-family: 'Oswald', Arial, sans-serif;
-            color: #000000;
-            font-weight: 700;
-            padding: 20px;
+            color: #000000; font-weight: 700;
         }
-
-        .page-container {
-            width: 100%;
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
+        .page-container { width: 100%; max-width: 750px; margin: 0 auto; }
         .page-header {
-            background-color: #004080;
-            color: #ffffff;
-            padding: 25px 30px;
-            text-align: center;
-            margin-bottom: 10px;
-            border-radius: 8px 8px 0 0;
+            background-color: #004080; color: #ffffff;
+            padding: 25px 30px; text-align: center;
+            margin-bottom: 10px; border-radius: 8px 8px 0 0;
         }
-
-        .page-header img {
-            width: 140px;
-            vertical-align: middle;
-            border: none;
-            border-radius: 8px;
-        }
-
-        .page-header h3 {
-            margin: 12px 0 5px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-
-        .page-header .tagline {
-            margin: 0;
-            font-size: 10px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .page-header h1 {
-            margin: 20px 0 10px;
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        .page-header .subtitle {
-            font-size: 13px;
-            color: #ffffff;
-            font-weight: 700;
-        }
-
+        .page-header img { width: 140px; vertical-align: middle; border: none; border-radius: 8px; }
+        .page-header h3 { margin: 12px 0 5px; font-size: 14px; font-weight: 700; letter-spacing: 1px; color: #ffffff; }
+        .page-header .tagline { margin: 0; font-size: 10px; font-weight: 700; color: #ffffff; }
+        .page-header h1 { margin: 20px 0 10px; font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: 1px; }
+        .page-header .subtitle { font-size: 13px; color: #ffffff; font-weight: 700; }
         .consultant-badge {
-            display: inline-block;
-            background: #28a745;
-            color: #fff;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            display: inline-block; background: #28a745; color: #fff;
+            padding: 6px 16px; border-radius: 20px; font-size: 12px;
+            margin-top: 10px; letter-spacing: 1px;
         }
-
         .partners-bar {
-            background: #ffffff;
-            border: 2px solid #004080;
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
+            background: #ffffff; border: 2px solid #004080; border-radius: 8px;
+            padding: 15px 20px; margin-bottom: 10px;
+            display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;
         }
+        .partner-badge { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .partner-logo { width: 50px; height: 50px; border-radius: 8px; border: 2px solid #004080; object-fit: contain; background: #f8f9fa; }
+        .partner-name { font-size: 10px; font-weight: 700; color: #000000; }
+        .controls-bar { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+        .control-btn {
+            background: #004080; color: #ffffff; border: 2px solid #004080;
+            padding: 10px 20px; border-radius: 6px; font-size: 13px; cursor: pointer;
+            font-weight: 700; font-family: 'Oswald', Arial, sans-serif;
+            letter-spacing: 0.5px; flex: 1; transition: all 0.3s ease;
+        }
+        .control-btn:hover { background: #0056b3; border-color: #0056b3; }
+        .status-bar {
+            background: #ffffff; border: 2px solid #004080; border-radius: 8px;
+            padding: 15px 20px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+        }
+        .status-item { display: flex; align-items: center; gap: 10px; }
+        .status-indicator { width: 12px; height: 12px; border-radius: 50%; }
+        .status-indicator.online { background: #28a745; }
+        .status-indicator.offline { background: #dc3545; }
+        .status-text { font-weight: 700; font-size: 14px; color: #000000; }
+        .submission-count { background: #004080; color: #ffffff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+        .form-card {
+            border: 4px double #004080; border-radius: 12px;
+            padding: 12px; background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 10px;
+        }
+        .form-content { padding: 35px; }
+        .section-header { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #004080; }
+        .section-title { font-size: 16px; font-weight: 700; color: #004080; margin-bottom: 5px; letter-spacing: 0.5px; }
+        .section-description { color: #000000; font-size: 12px; font-weight: 700; }
+        .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .form-group { margin-bottom: 20px; width: 100%; }
+        .form-label { display: block; font-weight: 700; margin-bottom: 8px; color: #000000; font-size: 13px; letter-spacing: 0.5px; }
+        .form-label .required { color: #dc3545; }
+        .form-input, .form-select {
+            width: 100%; padding: 12px 16px; background: #f8f9fa;
+            border: 2px solid #004080; border-radius: 6px; color: #000000;
+            font-size: 14px; font-family: 'Oswald', Arial, sans-serif; font-weight: 700;
+        }
+        .form-input:focus, .form-select:focus { outline: none; border-color: #28a745; background: #ffffff; }
+        .form-select {
+            cursor: pointer; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23004080' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 16px center;
+        }
+        .form-textarea {
+            width: 100%; padding: 12px 16px; background: #f8f9fa;
+            border: 2px solid #004080; border-radius: 6px; color: #000000;
+            font-size: 14px; font-family: 'Oswald', Arial, sans-serif;
+            font-weight: 700; resize: vertical; min-height: 80px;
+        }
+        .form-textarea:focus { outline: none; border-color: #28a745; background: #ffffff; }
+        .checkbox-section { margin-bottom: 25px; }
+        .checkbox-section-title {
+            font-size: 14px; font-weight: 700; color: #004080;
+            margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #004080;
+        }
+        .checkbox-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .checkbox-item {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 12px; background: #f8f9fa; border: 2px solid #004080;
+            border-radius: 6px; cursor: pointer; transition: all 0.2s ease;
+        }
+        .checkbox-item:hover { background: #e9ecef; }
+        .checkbox-item.selected { background: #d4edda; border-color: #28a745; }
+        .checkbox-item input[type="checkbox"] {
+            width: 20px; height: 20px; min-width: 20px;
+            cursor: pointer; accent-color: #28a745; margin-top: 2px;
+        }
+        .checkbox-text { flex: 1; }
+        .checkbox-title { font-size: 12px; color: #000000; font-weight: 700; display: block; }
+        .checkbox-desc { font-size: 10px; color: #666; margin-top: 2px; font-weight: 500; display: block; }
+        .submit-btn {
+            width: 100%; padding: 16px 24px; background: #28a745; color: #ffffff;
+            border: none; border-radius: 8px; font-size: 16px; font-weight: 700;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Oswald', Arial, sans-serif; margin-top: 10px; transition: all 0.3s ease;
+        }
+        .submit-btn:hover:not(:disabled) { background: #218838; }
+        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .page-footer {
+            background-color: #004080; color: #ffffff;
+            padding: 20px 30px; text-align: center;
+            font-size: 13px; line-height: 1.7; font-weight: 700;
+            border-radius: 0 0 8px 8px;
+        }
+        .page-footer p { margin: 6px 0 0; font-size: 12px; color: #ffffff; }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); display: none;
+            align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+        }
+        .modal-overlay.show { display: flex; }
+        .success-modal {
+            background: #ffffff; border-radius: 16px; padding: 40px;
+            max-width: 450px; width: 100%; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .success-icon {
+            width: 80px; height: 80px; background: #28a745; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 40px; color: white;
+        }
+        .success-title { font-size: 24px; color: #28a745; margin-bottom: 10px; font-weight: 700; }
+        .success-message { font-size: 14px; color: #333; margin-bottom: 8px; line-height: 1.6; }
+        .success-org {
+            font-size: 16px; color: #004080; font-weight: 700;
+            margin-bottom: 20px; padding: 10px;
+            background: #f0f7ff; border-radius: 8px;
+        }
+        .success-details { background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 20px; text-align: left; }
+        .success-details p { font-size: 12px; color: #666; margin: 5px 0; }
+        .success-details strong { color: #004080; }
+        .modal-close-btn {
+            background: #004080; color: #fff; border: none;
+            padding: 14px 40px; border-radius: 8px; font-size: 14px;
+            font-weight: 700; cursor: pointer; font-family: 'Oswald', Arial, sans-serif; letter-spacing: 1px;
+        }
+        .modal-close-btn:hover { background: #0056b3; }
+        .notification {
+            position: fixed; top: 20px; right: 20px; background: #ffffff;
+            border: 2px solid #004080; padding: 16px 20px; border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: none; z-index: 1000; max-width: 400px;
+        }
+        .notification.show { display: block; }
+        .notification.success { border-left: 4px solid #28a745; }
+        .notification.error { border-left: 4px solid #dc3545; }
+        .notification.info { border-left: 4px solid #004080; }
+        .notification-text { color: #000000; font-size: 14px; font-weight: 700; }
 
-        .partner-badge {
+        /* RADIO BUTTON STYLES */
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        .radio-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
-        }
-
-        .partner-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            border: 2px solid #004080;
-            object-fit: contain;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 8px;
             background: #f8f9fa;
-        }
-
-        .partner-name {
-            font-size: 10px;
-            font-weight: 700;
-            color: #000000;
-        }
-
-        .controls-bar {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .control-btn {
-            background: #004080;
-            color: #ffffff;
-            border: 2px solid #004080;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 13px;
-            cursor: pointer;
-            font-weight: 700;
-            font-family: 'Oswald', Arial, sans-serif;
-            letter-spacing: 0.5px;
-            flex: 1;
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover {
-            background: #0056b3;
-            border-color: #0056b3;
-            color: #ffffff;
-        }
-
-        .status-bar {
-            background: #ffffff;
             border: 2px solid #004080;
             border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .status-indicator.online {
-            background: #28a745;
-        }
-
-        .status-indicator.offline {
-            background: #dc3545;
-        }
-
-        .status-text {
-            font-weight: 700;
-            font-size: 14px;
-            color: #000000;
-        }
-
-        .submission-count {
-            background: #004080;
-            color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .form-card {
-            border: 4px double #004080;
-            border-radius: 12px;
-            padding: 12px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-        }
-
-        .form-content {
-            padding: 35px;
-        }
-
-        .section-header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #004080;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #004080;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-
-        .section-description {
-            color: #000000;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #000000;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
-
-        .form-label .required {
-            color: #dc3545;
-        }
-
-        .form-input, .form-select {
-            width: 100%;
-            padding: 12px 16px;
-            background: #f8f9fa;
-            border: 2px solid #004080;
-            border-radius: 6px;
-            color: #000000;
-            font-size: 14px;
-            font-family: 'Oswald', Arial, sans-serif;
-            font-weight: 700;
-        }
-
-        .form-input:focus, .form-select:focus {
-            outline: none;
-            border-color: #28a745;
-            background: #ffffff;
-        }
-
-        .form-select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23004080' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-        }
-
-        .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: #f8f9fa;
-            border: 2px solid #004080;
-            border-radius: 6px;
-            color: #000000;
-            font-size: 14px;
-            font-family: 'Oswald', Arial, sans-serif;
-            font-weight: 700;
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .form-textarea:focus {
-            outline: none;
-            border-color: #28a745;
-            background: #ffffff;
-        }
-
-        .checkbox-section {
-            margin-bottom: 25px;
-        }
-
-        .checkbox-section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #004080;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #004080;
-        }
-
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        /* SIMPLE WORKING CHECKBOX STYLES */
-        .checkbox-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            background: #f8f9fa;
-            border: 2px solid #004080;
-            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
-        }
-
-        .checkbox-item:hover {
-            background: #e9ecef;
-        }
-
-        .checkbox-item.selected {
-            background: #d4edda;
-            border-color: #28a745;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            min-width: 20px;
-            cursor: pointer;
-            accent-color: #28a745;
-            margin-top: 2px;
-        }
-
-        .checkbox-text {
-            flex: 1;
-        }
-
-        .checkbox-title {
-            font-size: 12px;
-            color: #000000;
-            font-weight: 700;
-            display: block;
-        }
-
-        .checkbox-desc {
-            font-size: 10px;
-            color: #666;
-            margin-top: 2px;
-            font-weight: 500;
-            display: block;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px 24px;
-            background: #28a745;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Oswald', Arial, sans-serif;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            background: #218838;
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .page-footer {
-            background-color: #004080;
-            color: #ffffff;
-            padding: 20px 30px;
             text-align: center;
-            font-size: 13px;
-            line-height: 1.7;
-            font-weight: 700;
-            border-radius: 0 0 8px 8px;
         }
-
-        .page-footer p {
-            margin: 6px 0 0;
-            font-size: 12px;
-            color: #ffffff;
+        .radio-item:hover { background: #e9ecef; }
+        .radio-item.selected {
+            background: #e8f0fe;
+            border-color: #004080;
+            border-width: 3px;
         }
-
-        /* SUCCESS MODAL */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+        .radio-item input[type="radio"] {
             display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
         }
-
-        .modal-overlay.show {
-            display: flex;
-        }
-
-        .success-modal {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: #28a745;
+        .radio-dot {
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
+            border: 2px solid #004080;
+            background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 40px;
-            color: white;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
         }
-
-        .success-title {
-            font-size: 24px;
-            color: #28a745;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .success-message {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
-
-        .success-org {
-            font-size: 16px;
-            color: #004080;
-            font-weight: 700;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #f0f7ff;
-            border-radius: 8px;
-        }
-
-        .success-details {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .success-details p {
-            font-size: 12px;
-            color: #666;
-            margin: 5px 0;
-        }
-
-        .success-details strong {
-            color: #004080;
-        }
-
-        .modal-close-btn {
+        .radio-item.selected .radio-dot {
             background: #004080;
-            color: #fff;
-            border: none;
-            padding: 14px 40px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: 'Oswald', Arial, sans-serif;
-            letter-spacing: 1px;
+            border-color: #004080;
         }
-
-        .modal-close-btn:hover {
-            background: #0056b3;
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ffffff;
-            border: 2px solid #004080;
-            padding: 16px 20px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            display: none;
-            z-index: 1000;
-            max-width: 400px;
-        }
-
-        .notification.show {
+        .radio-item.selected .radio-dot::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
             display: block;
         }
-
-        .notification.success {
-            border-left: 4px solid #28a745;
-        }
-
-        .notification.error {
-            border-left: 4px solid #dc3545;
-        }
-
-        .notification.info {
-            border-left: 4px solid #004080;
-        }
-
-        .notification-text {
-            color: #000000;
-            font-size: 14px;
+        .radio-label {
+            font-size: 12px;
             font-weight: 700;
+            color: #000;
+            letter-spacing: 0.5px;
         }
-
+        @media (max-width: 480px) {
+            .radio-group { grid-template-columns: repeat(3, 1fr); }
+        }
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .form-content {
-                padding: 25px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .checkbox-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .partners-bar {
-                gap: 15px;
-            }
-
-            .notification {
-                left: 20px;
-                right: 20px;
-            }
-
-            .success-modal {
-                padding: 30px 20px;
-            }
+            body { padding: 10px; }
+            .form-content { padding: 25px; }
+            .form-row, .checkbox-grid { grid-template-columns: 1fr; }
+            .partners-bar { gap: 15px; }
+            .notification { left: 20px; right: 20px; }
+            .success-modal { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <!-- HEADER -->
-        <div class="page-header">
-            <img src="NMCP.png" alt="NMCP Logo">
-            <h3>National Malaria Control Programme<br>(NMCP)</h3>
-            <p class="tagline"><em>Sierra Leone</em></p>
-            <h1>NATIONAL MALARIA DATA REPOSITORY SETUP</h1>
-            <p class="subtitle">Partner Contribution Mapping</p>
-            <span class="consultant-badge">FORM</span>
-        </div>
+<div class="page-container">
 
-        <!-- PARTNER LOGOS -->
-        <div class="partners-bar">
-            <div class="partner-badge">
-                <img src="CHAI2.png" alt="CHAI Logo" class="partner-logo">
-                <span class="partner-name">CHAI</span>
-            </div>
-            <div class="partner-badge">
-                <img src="NMCP.png" alt="NMCP Logo" class="partner-logo">
-                <span class="partner-name">NMCP</span>
-            </div>
-            <div class="partner-badge">
-                <img src="AHADI.png" alt="AHADI Logo" class="partner-logo">
-                <span class="partner-name">AHADI</span>
-            </div>
-            <div class="partner-badge">
-                <img src="WHO.png" alt="WHO Logo" class="partner-logo">
-                <span class="partner-name">WHO</span>
-            </div>
-        </div>
+    <div class="page-header">
+        <img src="NMCP.png" alt="NMCP Logo">
+        <h3>National Malaria Control Programme<br>(NMCP)</h3>
+        <p class="tagline"><em>Sierra Leone</em></p>
+        <h1>NATIONAL MALARIA DATA REPOSITORY SETUP</h1>
+        <p class="subtitle">Partner Contribution Mapping</p>
+        <span class="consultant-badge">FORM</span>
+    </div>
 
-        <!-- CONTROLS -->
-        <div class="controls-bar">
-            <button class="control-btn" id="viewDataBtn">VIEW ALL CONTRIBUTIONS</button>
+    <div class="partners-bar">
+        <div class="partner-badge">
+            <img src="NMCP.png" alt="NMCP Logo" class="partner-logo">
+            <span class="partner-name">NMCP</span>
         </div>
-
-        <!-- STATUS BAR -->
-        <div class="status-bar">
-            <div class="status-item">
-                <div class="status-indicator" id="statusIndicator"></div>
-                <span class="status-text" id="statusText">CHECKING...</span>
-            </div>
-            <div class="status-item">
-                <span style="color: #000000; font-size: 12px;">SUBMISSIONS:</span>
-                <span class="submission-count" id="submissionCount">0</span>
-            </div>
+        <div class="partner-badge">
+            <img src="WHO.png" alt="WHO Logo" class="partner-logo">
+            <span class="partner-name">WHO</span>
         </div>
+        <div class="partner-badge">
+            <img src="icf-sl.jpg" alt="ICF-SL Logo" class="partner-logo">
+            <span class="partner-name">ICF-SL</span>
+        </div>
+        <div class="partner-badge">
+            <img src="CHAI2.png" alt="CHAI Logo" class="partner-logo">
+            <span class="partner-name">CHAI</span>
+        </div>
+        <div class="partner-badge">
+            <img src="AHADI.png" alt="AHADI Logo" class="partner-logo">
+            <span class="partner-name">AHADI</span>
+        </div>
+    </div>
 
-        <!-- FORM CARD -->
-        <div class="form-card">
-            <div class="form-content">
-                <div class="section-header">
-                    <h2 class="section-title">PARTNERS CONTRIBUTION FORM</h2>
-                    <p class="section-description">Please provide your details and confirm your areas of support for the National Malaria Repository</p>
+    <div class="controls-bar">
+        <button class="control-btn" id="viewDataBtn">VIEW ALL CONTRIBUTIONS</button>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-indicator" id="statusIndicator"></div>
+            <span class="status-text" id="statusText">CHECKING...</span>
+        </div>
+        <div class="status-item">
+            <span style="color:#000000;font-size:12px;">SUBMISSIONS:</span>
+            <span class="submission-count" id="submissionCount">0</span>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <div class="form-content">
+            <div class="section-header">
+                <h2 class="section-title">PARTNERS CONTRIBUTION FORM</h2>
+                <p class="section-description">Please provide your details and confirm your areas of support for the National Malaria Repository</p>
+            </div>
+
+            <form id="contributionForm">
+
+                <div class="form-group">
+                    <label class="form-label">NAME <span class="required">*</span></label>
+                    <input type="text" class="form-input" name="consultant_name" id="consultantName" required placeholder="Full name">
                 </div>
 
-                <form id="contributionForm">
-                    <!-- Consultant Information -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">NAME <span class="required">*</span></label>
-                            <input type="text" class="form-input" name="consultant_name" id="consultantName" required placeholder="Full name">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">ORGANIZATION/AFFILIATION</label>
-                            <input type="text" class="form-input" name="organization" id="organization" placeholder="Your organization (if any)">
-                        </div>
+                <div class="form-group">
+                    <label class="form-label">ORGANIZATION/AFFILIATION <span class="required">*</span></label>
+                    <div class="radio-group" id="orgRadioGroup">
+                        <label class="radio-item" onclick="selectRadio(this)">
+                            <input type="radio" name="organization" value="NMCP" required>
+                            <div class="radio-dot"></div>
+                            <span class="radio-label">NMCP</span>
+                        </label>
+                        <label class="radio-item" onclick="selectRadio(this)">
+                            <input type="radio" name="organization" value="WHO">
+                            <div class="radio-dot"></div>
+                            <span class="radio-label">WHO</span>
+                        </label>
+                        <label class="radio-item" onclick="selectRadio(this)">
+                            <input type="radio" name="organization" value="ICF-SL">
+                            <div class="radio-dot"></div>
+                            <span class="radio-label">ICF-SL</span>
+                        </label>
+                        <label class="radio-item" onclick="selectRadio(this)">
+                            <input type="radio" name="organization" value="CHAI">
+                            <div class="radio-dot"></div>
+                            <span class="radio-label">CHAI</span>
+                        </label>
+                        <label class="radio-item" onclick="selectRadio(this)">
+                            <input type="radio" name="organization" value="AHADI">
+                            <div class="radio-dot"></div>
+                            <span class="radio-label">AHADI</span>
+                        </label>
                     </div>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">EMAIL <span class="required">*</span></label>
-                            <input type="email" class="form-input" name="email" id="email" required placeholder="your.email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">PHONE NUMBER <span class="required">*</span></label>
-                            <input type="tel" class="form-input" name="phone" id="phone" required placeholder="+232 XX XXX XXXX">
-                        </div>
-                    </div>
-
+                <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">EXPERTISE/SPECIALIZATION</label>
-                        <input type="text" class="form-input" name="expertise" id="expertise" placeholder="e.g., Data Analysis, DHIS2, System Development">
+                        <label class="form-label">EMAIL <span class="required">*</span></label>
+                        <input type="email" class="form-input" name="email" id="email" required placeholder="your.email@example.com">
                     </div>
-
-                    <!-- AREAS OF SUPPORT -->
-                    <div class="checkbox-section">
-                        <h3 class="checkbox-section-title">AREAS OF SUPPORT <span style="color: #28a745; font-size: 11px;">(Pre-selected based on consultant role)</span></h3>
-                        <div class="checkbox-grid" id="supportAreas">
-                            <!-- Row 1 -->
-                            <div class="checkbox-item selected">
-                                <input type="checkbox" name="support[]" value="technical_infrastructure" checked>
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Technical Infrastructure</span>
-                                    <span class="checkbox-desc">Server setup, hosting, cloud services</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item selected">
-                                <input type="checkbox" name="support[]" value="data_management" checked>
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Data Management</span>
-                                    <span class="checkbox-desc">Data entry, cleaning, validation</span>
-                                </div>
-                            </div>
-
-                            <!-- Row 2 -->
-                            <div class="checkbox-item selected">
-                                <input type="checkbox" name="support[]" value="capacity_building" checked>
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Capacity Building</span>
-                                    <span class="checkbox-desc">Training, workshops, mentorship</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="support[]" value="financial_support">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Financial Support</span>
-                                    <span class="checkbox-desc">Funding, budget allocation</span>
-                                </div>
-                            </div>
-
-                            <!-- Row 3 -->
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="support[]" value="human_resources">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Human Resources</span>
-                                    <span class="checkbox-desc">Staff, consultants, experts</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item selected">
-                                <input type="checkbox" name="support[]" value="dashboard_development" checked>
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Dashboard Development</span>
-                                    <span class="checkbox-desc">Visualization, analytics tools</span>
-                                </div>
-                            </div>
-
-                            <!-- Row 4 -->
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="support[]" value="data_quality">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Data Quality Assurance</span>
-                                    <span class="checkbox-desc">QA processes, audits, reviews</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item selected">
-                                <input type="checkbox" name="support[]" value="system_integration" checked>
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">System Integration</span>
-                                    <span class="checkbox-desc">API development, interoperability</span>
-                                </div>
-                            </div>
-
-                            <!-- Row 5 -->
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="support[]" value="policy_governance">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Policy and Governance</span>
-                                    <span class="checkbox-desc">Guidelines, SOPs, data policies</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="support[]" value="coordination">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Coordination</span>
-                                    <span class="checkbox-desc">Stakeholder engagement, meetings</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DASHBOARD USE CASES -->
-                    <div class="checkbox-section">
-                        <h3 class="checkbox-section-title">DASHBOARD USE CASES</h3>
-                        <div class="checkbox-grid" id="dashboardUseCases">
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="dashboard[]" value="surveillance">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Disease Surveillance</span>
-                                    <span class="checkbox-desc">Real-time case tracking, outbreak detection</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="dashboard[]" value="intervention_tracking">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Intervention Tracking</span>
-                                    <span class="checkbox-desc">ITN, IRS, SMC campaigns monitoring</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="dashboard[]" value="stock_management">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Stock Management</span>
-                                    <span class="checkbox-desc">Commodity tracking, supply chain</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="dashboard[]" value="case_management">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Case Management</span>
-                                    <span class="checkbox-desc">Patient data, treatment outcomes</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="dashboard[]" value="performance_monitoring">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Performance Monitoring</span>
-                                    <span class="checkbox-desc">KPIs, target vs actual analysis</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="dashboard[]" value="geographic_mapping">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Geographic Mapping</span>
-                                    <span class="checkbox-desc">GIS, hotspot mapping, stratification</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- USER CATEGORIES -->
-                    <div class="checkbox-section">
-                        <h3 class="checkbox-section-title">USER CATEGORIES TO SUPPORT</h3>
-                        <div class="checkbox-grid" id="userCategories">
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="users[]" value="national">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">National Level</span>
-                                    <span class="checkbox-desc">MoHS, NMCP managers, M&E officers</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="users[]" value="district">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">District Level</span>
-                                    <span class="checkbox-desc">DMOs, DHMT, district focal persons</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="users[]" value="facility">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Facility Level</span>
-                                    <span class="checkbox-desc">In-charges, nurses, CHWs, lab techs</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="users[]" value="partners">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Partners</span>
-                                    <span class="checkbox-desc">Implementing partners, donors, NGOs</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="users[]" value="researchers">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Researchers</span>
-                                    <span class="checkbox-desc">Academic institutions, students</span>
-                                </div>
-                            </div>
-
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="users[]" value="community">
-                                <div class="checkbox-text">
-                                    <span class="checkbox-title">Community Level</span>
-                                    <span class="checkbox-desc">CHW supervisors, local leaders</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- AVAILABILITY -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">AVAILABILITY (Hours per Week)</label>
-                            <select class="form-select" name="availability" id="availability">
-                                <option value="">-- Select Availability --</option>
-                                <option value="full_time">Full Time (40+ hours)</option>
-                                <option value="part_time_20">Part Time (20-40 hours)</option>
-                                <option value="part_time_10">Part Time (10-20 hours)</option>
-                                <option value="as_needed">As Needed</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">START DATE</label>
-                            <input type="date" class="form-input" name="start_date" id="startDate">
-                        </div>
-                    </div>
-
-                    <!-- COMMENTS -->
                     <div class="form-group">
-                        <label class="form-label">ADDITIONAL COMMENTS</label>
-                        <textarea class="form-textarea" name="comments" id="comments" placeholder="Any additional details about your expertise, availability, or planned contributions..."></textarea>
+                        <label class="form-label">PHONE NUMBER <span class="required">*</span></label>
+                        <input type="tel" class="form-input" name="phone" id="phone" required placeholder="+232 XX XXX XXXX">
                     </div>
+                </div>
 
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        SUBMIT CONTRIBUTION
-                    </button>
-                </form>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label class="form-label">EXPERTISE/SPECIALIZATION</label>
+                    <input type="text" class="form-input" name="expertise" id="expertise" placeholder="e.g., Data Analysis, DHIS2, System Development">
+                </div>
 
-        <!-- FOOTER -->
-        <div class="page-footer">
-            <p style="margin: 0;">National Malaria Repository - Sierra Leone</p>
-            <p>A collaborative effort by NMCP, CHAI, AHADI, WHO and Partners</p>
-            <p>© 2025 All rights reserved.</p>
+                <!-- AREAS OF SUPPORT -->
+                <div class="checkbox-section">
+                    <h3 class="checkbox-section-title">AREAS OF SUPPORT</h3>
+                    <div class="checkbox-grid" id="supportAreas">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="technical_infrastructure">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Technical Infrastructure</span>
+                                <span class="checkbox-desc">Server setup, hosting, cloud services</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="data_management">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Data Management</span>
+                                <span class="checkbox-desc">Data entry, cleaning, validation</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="capacity_building">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Capacity Building</span>
+                                <span class="checkbox-desc">Training, workshops, mentorship</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="financial_support">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Financial Support</span>
+                                <span class="checkbox-desc">Funding, budget allocation</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="human_resources">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Human Resources</span>
+                                <span class="checkbox-desc">Staff, consultants, experts</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="dashboard_development">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Dashboard Development</span>
+                                <span class="checkbox-desc">Visualization, analytics tools</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="data_quality">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Data Quality Assurance</span>
+                                <span class="checkbox-desc">QA processes, audits, reviews</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="system_integration">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">System Integration</span>
+                                <span class="checkbox-desc">API development, interoperability</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="policy_governance">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Policy and Governance</span>
+                                <span class="checkbox-desc">Guidelines, SOPs, data policies</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="support[]" value="coordination">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Coordination</span>
+                                <span class="checkbox-desc">Stakeholder engagement, meetings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DASHBOARD USE CASES -->
+                <div class="checkbox-section">
+                    <h3 class="checkbox-section-title">DASHBOARD USE CASES</h3>
+                    <div class="checkbox-grid" id="dashboardUseCases">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="dashboard[]" value="surveillance">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Disease Surveillance</span>
+                                <span class="checkbox-desc">Real-time case tracking, outbreak detection</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="dashboard[]" value="intervention_tracking">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Intervention Tracking</span>
+                                <span class="checkbox-desc">ITN, IRS campaigns monitoring</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="dashboard[]" value="stock_management">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Stock Management</span>
+                                <span class="checkbox-desc">Commodity tracking, supply chain</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="dashboard[]" value="case_management">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Case Management</span>
+                                <span class="checkbox-desc">Patient data, treatment outcomes</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="dashboard[]" value="performance_monitoring">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Performance Monitoring</span>
+                                <span class="checkbox-desc">KPIs, target vs actual analysis</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="dashboard[]" value="geographic_mapping">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Geographic Mapping</span>
+                                <span class="checkbox-desc">GIS, hotspot mapping, stratification</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER CATEGORIES -->
+                <div class="checkbox-section">
+                    <h3 class="checkbox-section-title">USER CATEGORIES TO SUPPORT</h3>
+                    <div class="checkbox-grid" id="userCategories">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="users[]" value="national">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">National Level</span>
+                                <span class="checkbox-desc">MoHS, NMCP managers, M&E officers</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="users[]" value="district">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">District Level</span>
+                                <span class="checkbox-desc">DMOs, DHMT, district focal persons</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="users[]" value="facility">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Facility Level</span>
+                                <span class="checkbox-desc">In-charges, nurses, CHWs, lab techs</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="users[]" value="partners">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Partners</span>
+                                <span class="checkbox-desc">Implementing partners, donors, NGOs</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="users[]" value="researchers">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Researchers</span>
+                                <span class="checkbox-desc">Academic institutions, students</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="users[]" value="community">
+                            <div class="checkbox-text">
+                                <span class="checkbox-title">Community Level</span>
+                                <span class="checkbox-desc">CHW supervisors, local leaders</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">AVAILABILITY (Hours per Week)</label>
+                        <select class="form-select" name="availability" id="availability">
+                            <option value="">-- Select Availability --</option>
+                            <option value="full_time">Full Time (40+ hours)</option>
+                            <option value="part_time_20">Part Time (20-40 hours)</option>
+                            <option value="part_time_10">Part Time (10-20 hours)</option>
+                            <option value="as_needed">As Needed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">START DATE</label>
+                        <input type="date" class="form-input" name="start_date" id="startDate">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">ADDITIONAL COMMENTS</label>
+                    <textarea class="form-textarea" name="comments" id="comments" placeholder="Any additional details about your expertise, availability, or planned contributions..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">SUBMIT CONTRIBUTION</button>
+            </form>
         </div>
     </div>
 
-    <!-- SUCCESS MODAL -->
-    <div class="modal-overlay" id="successModal">
-        <div class="success-modal">
-            <div class="success-icon">✓</div>
-            <h2 class="success-title">Submission Successful!</h2>
-            <p class="success-message">Thank you for your contribution to the National Malaria Repository.</p>
-            <div class="success-org" id="successOrg"></div>
-            <div class="success-details" id="successDetails"></div>
-            <button class="modal-close-btn" id="closeModalBtn">CONTINUE</button>
-        </div>
+    <div class="page-footer">
+        <p style="margin:0;">National Malaria Repository - Sierra Leone</p>
+        <p>A collaborative effort by NMCP, CHAI, AHADI, WHO and Partners</p>
+        <p>© 2025 All rights reserved.</p>
     </div>
+</div>
 
-    <!-- NOTIFICATION -->
-    <div class="notification" id="notification">
-        <span class="notification-text" id="notificationText"></span>
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+    <div class="success-modal">
+        <div class="success-icon">✓</div>
+        <h2 class="success-title">Submission Successful!</h2>
+        <p class="success-message">Thank you for your contribution to the National Malaria Repository.</p>
+        <div class="success-org" id="successOrg"></div>
+        <div class="success-details" id="successDetails"></div>
+        <button class="modal-close-btn" id="closeModalBtn">CONTINUE</button>
     </div>
+</div>
 
-    <script>
-        // Configuration
-        const CONFIG = {
-            SCRIPT_URL: 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
-            GOOGLE_SHEET_URL: 'YOUR_GOOGLE_SHEET_URL_HERE'
-        };
+<div class="notification" id="notification">
+    <span class="notification-text" id="notificationText"></span>
+</div>
 
-        // State
-        let submissionCount = parseInt(localStorage.getItem('consultantSubmissionCount') || '0');
+<script>
+    const CONFIG = {
+        SCRIPT_URL: 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
+        GOOGLE_SHEET_URL: 'YOUR_GOOGLE_SHEET_URL_HERE'
+    };
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            updateOnlineStatus();
-            document.getElementById('submissionCount').textContent = submissionCount;
-            
-            // Setup checkbox click handlers
-            document.querySelectorAll('.checkbox-item').forEach(function(item) {
-                item.addEventListener('click', function(e) {
-                    // Don't interfere if clicking directly on checkbox
-                    if (e.target.type === 'checkbox') return;
-                    
-                    var checkbox = this.querySelector('input[type="checkbox"]');
-                    checkbox.checked = !checkbox.checked;
-                    updateCheckboxStyle(this, checkbox.checked);
-                });
-                
-                // Also handle direct checkbox clicks
-                var checkbox = item.querySelector('input[type="checkbox"]');
-                checkbox.addEventListener('change', function() {
-                    updateCheckboxStyle(item, this.checked);
-                });
+    let submissionCount = parseInt(localStorage.getItem('consultantSubmissionCount') || '0');
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateOnlineStatus();
+        document.getElementById('submissionCount').textContent = submissionCount;
+
+        document.querySelectorAll('.checkbox-item').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+                if (e.target.type === 'checkbox') return;
+                var cb = this.querySelector('input[type="checkbox"]');
+                cb.checked = !cb.checked;
+                updateCheckboxStyle(this, cb.checked);
             });
-
-            // Form submit
-            document.getElementById('contributionForm').addEventListener('submit', handleSubmit);
-            
-            // View data button
-            document.getElementById('viewDataBtn').addEventListener('click', function() {
-                if (CONFIG.GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_SHEET_URL_HERE') {
-                    window.open(CONFIG.GOOGLE_SHEET_URL, '_blank');
-                } else {
-                    showNotification('Please configure Google Sheet URL', 'info');
-                }
-            });
-
-            // Close modal
-            document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-            document.getElementById('successModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-
-            // Online/offline events
-            window.addEventListener('online', function() {
-                updateOnlineStatus();
-                showNotification('Back online', 'success');
-            });
-            window.addEventListener('offline', function() {
-                updateOnlineStatus();
-                showNotification('You are offline', 'error');
+            var cb = item.querySelector('input[type="checkbox"]');
+            cb.addEventListener('change', function () {
+                updateCheckboxStyle(item, this.checked);
             });
         });
 
-        function updateCheckboxStyle(item, isChecked) {
-            if (isChecked) {
-                item.classList.add('selected');
+        document.getElementById('contributionForm').addEventListener('submit', handleSubmit);
+
+        document.getElementById('viewDataBtn').addEventListener('click', function () {
+            if (CONFIG.GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_SHEET_URL_HERE') {
+                window.open(CONFIG.GOOGLE_SHEET_URL, '_blank');
             } else {
-                item.classList.remove('selected');
+                showNotification('Please configure Google Sheet URL', 'info');
             }
-        }
+        });
 
-        function updateOnlineStatus() {
-            var indicator = document.getElementById('statusIndicator');
-            var text = document.getElementById('statusText');
-            if (navigator.onLine) {
-                indicator.className = 'status-indicator online';
-                text.textContent = 'ONLINE';
-            } else {
-                indicator.className = 'status-indicator offline';
-                text.textContent = 'OFFLINE';
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+        document.getElementById('successModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        window.addEventListener('online', function () { updateOnlineStatus(); showNotification('Back online', 'success'); });
+        window.addEventListener('offline', function () { updateOnlineStatus(); showNotification('You are offline', 'error'); });
+    });
+
+    function updateCheckboxStyle(item, isChecked) {
+        item.classList.toggle('selected', isChecked);
+    }
+
+    function updateOnlineStatus() {
+        var indicator = document.getElementById('statusIndicator');
+        var text = document.getElementById('statusText');
+        if (navigator.onLine) {
+            indicator.className = 'status-indicator online';
+            text.textContent = 'ONLINE';
+        } else {
+            indicator.className = 'status-indicator offline';
+            text.textContent = 'OFFLINE';
+        }
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        var btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = 'SUBMITTING...';
+
+        var formData = {
+            timestamp: new Date().toISOString(),
+            submission_type: 'Partner Contribution',
+            consultant_name: document.getElementById('consultantName').value,
+            organization: getRadioValue('organization'),
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            expertise: document.getElementById('expertise').value,
+            support_areas: getCheckedValues('support[]'),
+            dashboard_usecases: getCheckedValues('dashboard[]'),
+            user_categories: getCheckedValues('users[]'),
+            availability: document.getElementById('availability').value,
+            start_date: document.getElementById('startDate').value,
+            comments: document.getElementById('comments').value
+        };
+
+        try {
+            if (CONFIG.SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                await fetch(CONFIG.SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
             }
+            submissionCount++;
+            localStorage.setItem('consultantSubmissionCount', submissionCount);
+            document.getElementById('submissionCount').textContent = submissionCount;
+            showSuccessModal(formData);
+            resetForm();
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('Failed to submit. Please try again.', 'error');
         }
 
-        async function handleSubmit(e) {
-            e.preventDefault();
-            
-            var btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.textContent = 'SUBMITTING...';
+        btn.disabled = false;
+        btn.textContent = 'SUBMIT CONTRIBUTION';
+    }
 
-            var formData = {
-                timestamp: new Date().toISOString(),
-                submission_type: 'Local Consultant',
-                consultant_name: document.getElementById('consultantName').value,
-                organization: document.getElementById('organization').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                expertise: document.getElementById('expertise').value,
-                support_areas: getCheckedValues('support[]'),
-                dashboard_usecases: getCheckedValues('dashboard[]'),
-                user_categories: getCheckedValues('users[]'),
-                availability: document.getElementById('availability').value,
-                start_date: document.getElementById('startDate').value,
-                comments: document.getElementById('comments').value
-            };
+    function selectRadio(label) {
+        document.querySelectorAll('#orgRadioGroup .radio-item').forEach(function(el) {
+            el.classList.remove('selected');
+        });
+        label.classList.add('selected');
+        label.querySelector('input[type="radio"]').checked = true;
+    }
 
-            try {
-                if (CONFIG.SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-                    await fetch(CONFIG.SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(formData)
-                    });
-                }
+    function getRadioValue(name) {
+        var el = document.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : '';
+    }
 
-                submissionCount++;
-                localStorage.setItem('consultantSubmissionCount', submissionCount);
-                document.getElementById('submissionCount').textContent = submissionCount;
+    function getCheckedValues(name) {
+        var values = [];
+        document.querySelectorAll('input[name="' + name + '"]:checked').forEach(function (cb) {
+            values.push(cb.value);
+        });
+        return values.join(', ');
+    }
 
-                showSuccessModal(formData);
-                resetForm();
+    function resetForm() {
+        document.getElementById('contributionForm').reset();
+        document.querySelectorAll('.checkbox-item').forEach(function (item) {
+            item.classList.remove('selected');
+        });
+        document.querySelectorAll('#orgRadioGroup .radio-item').forEach(function (el) {
+            el.classList.remove('selected');
+        });
+    }
 
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Failed to submit. Please try again.', 'error');
-            }
+    function showSuccessModal(data) {
+        document.getElementById('successOrg').textContent = data.consultant_name + (data.organization ? ' (' + data.organization + ')' : '');
+        var sc = data.support_areas ? data.support_areas.split(', ').filter(Boolean).length : 0;
+        var dc = data.dashboard_usecases ? data.dashboard_usecases.split(', ').filter(Boolean).length : 0;
+        var uc = data.user_categories ? data.user_categories.split(', ').filter(Boolean).length : 0;
+        document.getElementById('successDetails').innerHTML =
+            '<p><strong>Email:</strong> ' + data.email + '</p>' +
+            '<p><strong>Phone:</strong> ' + (data.phone || 'Not provided') + '</p>' +
+            '<p><strong>Support Areas:</strong> ' + sc + ' selected</p>' +
+            '<p><strong>Dashboard Use Cases:</strong> ' + dc + ' selected</p>' +
+            '<p><strong>User Categories:</strong> ' + uc + ' selected</p>' +
+            '<p><strong>Availability:</strong> ' + (data.availability || 'Not specified') + '</p>';
+        document.getElementById('successModal').classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
 
-            btn.disabled = false;
-            btn.textContent = 'SUBMIT CONTRIBUTION';
-        }
+    function closeModal() {
+        document.getElementById('successModal').classList.remove('show');
+        document.body.style.overflow = '';
+    }
 
-        function getCheckedValues(name) {
-            var checked = document.querySelectorAll('input[name="' + name + '"]:checked');
-            var values = [];
-            checked.forEach(function(cb) {
-                values.push(cb.value);
-            });
-            return values.join(', ');
-        }
-
-        function resetForm() {
-            document.getElementById('contributionForm').reset();
-            
-            // Reset all checkbox styles
-            document.querySelectorAll('.checkbox-item').forEach(function(item) {
-                item.classList.remove('selected');
-            });
-
-            // Re-select the pre-selected ones
-            var preSelected = ['technical_infrastructure', 'data_management', 'capacity_building', 'dashboard_development', 'system_integration'];
-            preSelected.forEach(function(val) {
-                var cb = document.querySelector('input[name="support[]"][value="' + val + '"]');
-                if (cb) {
-                    cb.checked = true;
-                    cb.closest('.checkbox-item').classList.add('selected');
-                }
-            });
-        }
-
-        function showSuccessModal(data) {
-            document.getElementById('successOrg').textContent = data.consultant_name + (data.organization ? ' (' + data.organization + ')' : '');
-            
-            var supportCount = data.support_areas ? data.support_areas.split(', ').length : 0;
-            var dashboardCount = data.dashboard_usecases ? data.dashboard_usecases.split(', ').length : 0;
-            var userCount = data.user_categories ? data.user_categories.split(', ').length : 0;
-
-            document.getElementById('successDetails').innerHTML = 
-                '<p><strong>Email:</strong> ' + data.email + '</p>' +
-                '<p><strong>Phone:</strong> ' + (data.phone || 'Not provided') + '</p>' +
-                '<p><strong>Support Areas:</strong> ' + supportCount + ' selected</p>' +
-                '<p><strong>Dashboard Use Cases:</strong> ' + dashboardCount + ' selected</p>' +
-                '<p><strong>User Categories:</strong> ' + userCount + ' selected</p>' +
-                '<p><strong>Availability:</strong> ' + (data.availability || 'Not specified') + '</p>';
-
-            document.getElementById('successModal').classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('successModal').classList.remove('show');
-            document.body.style.overflow = '';
-        }
-
-        function showNotification(message, type) {
-            var notification = document.getElementById('notification');
-            var text = document.getElementById('notificationText');
-            notification.className = 'notification ' + type + ' show';
-            text.textContent = message;
-            setTimeout(function() {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-    </script>
+    function showNotification(message, type) {
+        var n = document.getElementById('notification');
+        document.getElementById('notificationText').textContent = message;
+        n.className = 'notification ' + type + ' show';
+        setTimeout(function () { n.classList.remove('show'); }, 4000);
+    }
+</script>
 </body>
 </html>
